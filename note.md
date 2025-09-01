@@ -10,8 +10,8 @@ python -m vllm.entrypoints.openai.api_server \
   --load_format mistral \
   --dtype auto \
   --max-model-len 30000 \
-  --gpu-memory-utilization 0.20 \
-  --host 127.0.0.1 --port 8003
+  --gpu-memory-utilization 0.50 \
+  --host 127.0.0.1 --port 8011
 
 # train_data sony/tau
 files = [

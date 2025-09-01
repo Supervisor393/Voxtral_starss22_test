@@ -4,24 +4,26 @@ import json
 import re
 import soundfile as sf
 import pandas as pd
-import requests
-from typing import List, Dict, Any, Optional, Tuple
-from mistral_common.protocol.instruct.messages import TextChunk, AudioChunk, UserMessage
-from mistral_common.audio import Audio
+import librosa
+import torch
+from typing import List, Dict, Any, Optional
+from transformers import Qwen2AudioForConditionalGeneration, Qwen2AudioProcessor
 
-# ========== CONFIG ==========
-VLLM_ENDPOINT = "http://127.0.0.1:8011/v1/chat/completions"
-
-# 一次跑多个窗口长度（秒）
-WIN_LENS = [5, 10, 20, 30, 40, 50, 60, 90, 120]
+# ========== MULTI-WINDOW CONFIG ==========
+WIN_LENS = [5, 10, 20, 30, 40, 50, 60, 90, 120]  # seconds; 一次跑多个窗口长度
 
 TAU_EVENTS_CSV  = "/data/user/jzt/crd/audioLLM/train_events/tau.csv"
 SONY_EVENTS_CSV = "/data/user/jzt/crd/audioLLM/train_events/sony.csv"
 
-# model gen params
+# 生成参数（与原脚本一致）
 TEMPERATURE = 0.2
 TOP_P = 0.95
-MAX_TOKENS = 4096
+
+# ========== QWEN2-AUDIO CONFIG ==========
+# 如果你通过 ModelScope/HF 已经把权重下到了本地，把路径改成你的本地目录
+QWEN_LOCAL_DIR = "/data/user/jzt/.cache/modelscope/hub/models/Qwen/Qwen2-Audio-7B-Instruct"
+QWEN_MAX_NEW_TOKENS = 4096   # 对“只输出 JSON”已足够；需要的话可降到 512
+QWEN_DO_SAMPLE = True        # 若想更严格 JSON，可改为 False（贪心解码）
 
 # ====== CLASS ID → NAME MAPPING ======
 CLASS_ID_TO_NAME = {
@@ -43,21 +45,25 @@ CLASS_ID_TO_NAME = {
 # ---------------- Robust JSON -> list[{"class":int, "start":float}] ----------------
 
 def extract_json_array(text: str) -> Optional[str]:
+    """从文本中提取 JSON 数组（处理转义字符和单引号）。"""
     if not text:
         return None
-    m = re.search(r"```(?:json)?\s*(.*?)```", text, flags=re.S | re.I)
+    # 处理转义字符：确保反斜杠 \ 不会影响 JSON 格式
+    text = text.replace(r'\"', '"')  # 转换转义的引号
+    text = text.replace(r"\'", "'")  # 转换转义的单引号（如果有）
+    text = text.replace(r'\\', '\\')  # 保持反斜杠不变
+
+    # 匹配 JSON 数组
+    m = re.search(r"\[.*\]", text, flags=re.S | re.I)
     if m:
-        candidate = m.group(1)
-        arr = _find_top_level_array(candidate)
-        if arr is not None:
-            return arr
-    arr = _find_top_level_array(text)
-    return arr
+        return m.group(0)
+    return None
 
 def _find_top_level_array(s: str) -> Optional[str]:
+    """递归查找顶层的 JSON 数组。"""
     start = s.find('[')
     while start != -1:
-        i, depth, in_str, esc = start, 0, False, False
+        i, depth, in_str, esc, quote_char = start, 0, False, False, None
         while i < len(s):
             ch = s[i]
             if in_str:
@@ -65,11 +71,13 @@ def _find_top_level_array(s: str) -> Optional[str]:
                     esc = False
                 elif ch == '\\':
                     esc = True
-                elif ch == '"':
+                elif ch == quote_char:
                     in_str = False
+                    quote_char = None
             else:
-                if ch == '"':
+                if ch == '"' or ch == "'":
                     in_str = True
+                    quote_char = ch
                 elif ch == '[':
                     depth += 1
                 elif ch == ']':
@@ -81,50 +89,44 @@ def _find_top_level_array(s: str) -> Optional[str]:
     return None
 
 def parse_class_start_list(raw_reply: str, win_len: float) -> List[Dict[str, Any]]:
-    """Parse [{"class":ID,"start":seconds}, ...] (start is RELATIVE to the window)."""
+    """解析 JSON 字符串并提取 class 和 start 字段。"""
     arr_text = extract_json_array(raw_reply)
     if not arr_text:
         return []
     try:
-        data = json.loads(arr_text)
-    except Exception:
-        return []
+        # 将单引号转换为双引号，以兼容 JSON 标准
+        json_text = arr_text.replace("'", '"')
+        data = json.loads(json_text)  # 解析 JSON 数据
+    except json.JSONDecodeError:
+        return []  # 如果解析失败，返回空列表
+
     out = []
     if isinstance(data, list):
         for e in data:
-            if not isinstance(e, dict):
-                continue
-            c = e.get("class")
-            st = e.get("start")
-            try:
-                c_int = int(c)
-                st_f = float(st)
-            except Exception:
-                continue
-            if c_int < 0 or c_int > 12:
-                continue
-            if not (0.0 <= st_f < win_len + 1e-6):
-                continue
-            out.append({"class": c_int, "start": st_f})
+            if isinstance(e, dict):
+                # 处理 class 和 start
+                c = e.get("class")
+                st = e.get("start")
+                try:
+                    c_int = int(c)  # 将 class 转为整数
+                    st_f = float(st)  # 将 start 转为浮动类型
+                    # 检查有效范围
+                    if c_int < 0 or c_int > 12 or not (0.0 <= st_f < win_len + 1e-6):
+                        continue
+                    out.append({"class": c_int, "start": st_f})
+                except (ValueError, TypeError):
+                    continue  # 如果解析出错则跳过该项
     return out
 
-# ---------------- audio <-> AudioChunk (via temp file path) ----------------
+# ---------------- 模型加载（一次性） ----------------
 
-def array_to_audiochunk(arr, sr) -> AudioChunk:
-    import tempfile
-    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-        tmp_path = tmp.name
-    try:
-        sf.write(tmp_path, arr, sr, format="wav")
-        audio = Audio.from_file(tmp_path, strict=False)
-        return AudioChunk.from_audio(audio)
-    finally:
-        try:
-            os.remove(tmp_path)
-        except OSError:
-            pass
+_qwen_processor = Qwen2AudioProcessor.from_pretrained(QWEN_LOCAL_DIR, sampling_rate=16000)  # 添加 sampling_rate
+_qwen_model = Qwen2AudioForConditionalGeneration.from_pretrained(
+    QWEN_LOCAL_DIR, device_map={"": 0}, dtype=torch.float16
+).eval()
+_QWEN_TARGET_SR = _qwen_processor.feature_extractor.sampling_rate  # 通常 16000
 
-# ---------------- prompt & model call ----------------
+# ---------------- 提示词生成 + 模型调用 ----------------
 
 def build_prompt(present_classes: List[int], win_len: float) -> str:
     # 生成 “ID: 含义” 列表字符串
@@ -145,31 +147,55 @@ def build_prompt(present_classes: List[int], win_len: float) -> str:
     return prompt
 
 def call_model_on_window(audio_arr, sr, present_classes: List[int], win_len: float) -> str:
-    """Prompt dynamically with present_classes (ID + meaning) and return raw content string."""
+    """
+    用 Qwen2-Audio-7B-Instruct 对当前窗口推理：
+    - 提示词包含 ID->含义
+    - 输入是“窗口内的 numpy 音频数组 + 文本指令”
+    - 返回原始字符串（供 parse_class_start_list 解析）
+    """
     prompt = build_prompt(present_classes, win_len)
 
-    audio_chunk = array_to_audiochunk(audio_arr, sr)
-    text_chunk = TextChunk(text=prompt)
-    user_msg = UserMessage(content=[audio_chunk, text_chunk]).to_openai()
+    # Qwen 要求采样率与处理器一致（通常 16k）
+    if sr != _QWEN_TARGET_SR:
+        audio_arr = librosa.resample(audio_arr, orig_sr=sr, target_sr=_QWEN_TARGET_SR)
 
-    payload = {
-        "model": "voxtral-mini-3b",
-        "messages": [user_msg],
-        "temperature": TEMPERATURE,
-        "top_p": TOP_P,
-        "max_tokens": MAX_TOKENS,
-    }
-    r = requests.post(VLLM_ENDPOINT, json=payload, timeout=300)
-    if not r.ok:
-        raise RuntimeError(f"HTTP {r.status_code}: {r.text}")
-    return r.json()["choices"][0]["message"]["content"]
+    # 按 ChatML 构造带 audio+text 的会话
+    conversation = [
+        {"role": "user", "content": [
+            {"type": "audio", "audio_url": None},  # 本地数组，不用 URL
+            {"type": "text", "text": prompt},
+        ]},
+    ]
+    text = _qwen_processor.apply_chat_template(conversation, add_generation_prompt=True, tokenize=False)
+
+    # 打包输入并移动到模型设备
+    inputs = _qwen_processor(text=text, audio=audio_arr, return_tensors="pt", padding=True)
+    inputs = {k: v.to(_qwen_model.device) if hasattr(v, "to") else v for k, v in inputs.items()}
+
+    # 生成
+    with torch.no_grad():
+        gen_ids = _qwen_model.generate(
+            **inputs,
+            do_sample=QWEN_DO_SAMPLE,            # 更严格 JSON 可改为 False
+            temperature=TEMPERATURE,
+            top_p=TOP_P,
+            max_new_tokens=QWEN_MAX_NEW_TOKENS,
+        )
+    # 只保留新生成部分
+    gen_ids = gen_ids[:, inputs["input_ids"].size(1):]
+
+    # 解码为字符串
+    response = _qwen_processor.batch_decode(
+        gen_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False
+    )[0]
+    return response
 
 # ---------------- windowing and GT computation ----------------
 
 def split_fixed_win(wav_path: str, win_len: float):
     """
     Return (wav, sr, windows)
-    windows = list of (i0, i1, t0, t1) with exact ts each; last tail (<win_len) is dropped.
+    windows = list of (i0, i1, t0, t1) with exact timestamps each; last tail (<win_len) is dropped.
     """
     wav, sr = sf.read(wav_path)
     # 若是多通道，转单通道（均值）
@@ -256,10 +282,10 @@ def process_file_windows(wav_path: str,
                          win_len: float):
     """
     对每个窗口：
-      - 由 GT CSV 计算“每类在该窗口的最早绝对时间”（gt_start，绝对时间）
-      - 提示模型仅返回这些类的“最早开始相对时间” -> 转为 pred_start = win_start + 相对时间（绝对时间）
-      - 逐类写入一行：file, win_start, win_end, class, gt_start, pred_start （都绝对时间）
-      - 原始模型回复以追加方式写入 replies_jsonl
+      - 由 GT CSV 计算“每类在该窗口的最早绝对时间”（gt_start，绝对）
+      - 让模型仅返回这些类在窗口内的“最早开始相对时间” -> pred_start = win_start + 相对时间（绝对）
+      - 逐类写入：file, win_start, win_end, class, gt_start, pred_start
+      - 原始模型回复逐窗口写入 replies_jsonl
     """
     wav, sr, wins = split_fixed_win(wav_path, win_len)
     base = os.path.basename(wav_path)
@@ -275,12 +301,13 @@ def process_file_windows(wav_path: str,
 
             clip = wav[i0:i1]
             present_classes = sorted(gt_abs_map.keys())
+            # 如果类别大于4，随机选4个类别（如需全类，请删除这一段）
             if len(present_classes) > 4:
                 present_classes = random.sample(present_classes, 4)
 
-            # 调模型（带 win_len）
+            # 调模型（Qwen2-Audio）
             raw = call_model_on_window(clip, sr, present_classes, win_len)
-
+            
             # 保存原始回复（按窗口）
             fout.write(json.dumps({
                 "file": base,
@@ -290,13 +317,13 @@ def process_file_windows(wav_path: str,
                 "reply": raw
             }, ensure_ascii=False) + "\n")
 
-            # 解析模型相对开始时间（带 win_len 约束）
+            # 解析模型相对开始时间
             pred_list = parse_class_start_list(raw, win_len)  # [{"class":ID,"start":rel}, ...]
             pred_rel_map = {int(d["class"]): float(d["start"]) for d in pred_list}
 
             # 汇总行：pred_start = t0 + rel_start   ;   gt_start 已是绝对时间
             for cid in present_classes:
-                gt_abs = float(gt_abs_map[cid])             # 绝对时间
+                gt_abs = float(gt_abs_map[cid])                       # 绝对时间
                 pred_abs = t0 + pred_rel_map[cid] if cid in pred_rel_map else ""  # 若缺失则空
                 append_buffer.append({
                     "file": base,
@@ -352,7 +379,7 @@ if __name__ == "__main__":
         "/data/user/jzt/crd/audioLLM/foa_dev/foa_dev/dev-train-sony/fold3_room22_mix002.wav",
         "/data/user/jzt/crd/audioLLM/foa_dev/foa_dev/dev-train-sony/fold3_room22_mix003.wav",
         "/data/user/jzt/crd/audioLLM/foa_dev/foa_dev/dev-train-sony/fold3_room22_mix004.wav",
-        "/data/user/jzt/crd/audioLLM/foa_dev/foa_dev/dev-train-sony/fold3_room22_mix005.wav",
+        "/data/user/jzt/crd/audioLLM/foa_dev/foa_dev/dev-train-sony/fold3_room22_mix005.wav",   
         "/data/user/jzt/crd/audioLLM/foa_dev/foa_dev/dev-train-sony/fold3_room22_mix006.wav",
         "/data/user/jzt/crd/audioLLM/foa_dev/foa_dev/dev-train-sony/fold3_room22_mix007.wav",
         "/data/user/jzt/crd/audioLLM/foa_dev/foa_dev/dev-train-sony/fold3_room22_mix008.wav",
@@ -395,20 +422,19 @@ if __name__ == "__main__":
     for wav_path in files:
         # 针对每个窗口长度分别评测 & 产出文件
         for win_len in WIN_LENS:
-            # 每个 win_len 独立的输出文件名（便于区分）
             win_tag = f"win{int(win_len):02d}"  # 5->win05, 120->win120
-            replies_jsonl = f"{wav_path}.{win_tag}.4limit.replies.jsonl"
+            replies_jsonl = f"{wav_path}.{win_tag}.4limit.replies.Qwen.jsonl"
 
             if is_tau_path(wav_path):
                 if df_tau is None:
                     raise FileNotFoundError(f"TAU events CSV not found: {TAU_EVENTS_CSV}")
-                out_csv = f"tau.{win_tag}_earliest.csv"
+                out_csv = f"Qwen_tau.{win_tag}_earliest.csv"
                 process_file_windows(wav_path, df_tau, out_csv, replies_jsonl, win_len)
 
             elif is_sony_path(wav_path):
                 if df_sony is None:
                     raise FileNotFoundError(f"SONY events CSV not found: {SONY_EVENTS_CSV}")
-                out_csv = f"sony.{win_tag}_earliest.csv"
+                out_csv = f"Qwen_sony.{win_tag}_earliest.csv"
                 process_file_windows(wav_path, df_sony, out_csv, replies_jsonl, win_len)
 
             else:

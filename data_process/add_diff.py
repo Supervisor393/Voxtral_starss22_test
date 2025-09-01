@@ -26,7 +26,7 @@ def process_csv_in_current_folder(folder_path: str):
 
 if __name__ == "__main__":
     # 输入文件夹路径，包含所有的 CSV 文件
-    input_folder = '/data/user/jzt/crd/audioLLM/train_data/4_limit'  # 你的输入文件夹路径
+    input_folder = '/data/user/jzt/crd/audioLLM/train_data/4_limit_Qwen'  # 你的输入文件夹路径
 
     # 处理当前文件夹中的所有 CSV 文件
     process_csv_in_current_folder(input_folder)
