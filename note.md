@@ -1,6 +1,6 @@
 # nvidia/voxtral-mini-3b usage
 export CUDA_DEVICE_ORDER=PCI_BUS_ID
-export CUDA_VISIBLE_DEVICES=1
+export CUDA_VISIBLE_DEVICES=0
 
 python -m vllm.entrypoints.openai.api_server \
   --model /data/user/jzt/crd/audioLLM/Voxtral-Mini-3B-2507 \
@@ -9,8 +9,8 @@ python -m vllm.entrypoints.openai.api_server \
   --config_format mistral \
   --load_format mistral \
   --dtype auto \
-  --max-model-len 30000 \
-  --gpu-memory-utilization 0.50 \
+  --max-model-len 10000 \
+  --gpu-memory-utilization 0.20 \
   --host 127.0.0.1 --port 8011
 
 # train_data sony/tau
