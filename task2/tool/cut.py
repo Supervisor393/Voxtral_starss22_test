@@ -39,14 +39,12 @@ def repeat_audio(input_path, repeat_times, output_path):
 
 def main():
     # 1. 裁剪 8.0 到 12.0 秒的音频并重复 10 次
-    crop_audio("/data/user/jzt/crd/audioLLM/foa_dev/foa_dev/dev-train-sony/fold3_room21_mix001.wav", 62.0, 63.0, "fill_mid.wav")
-    repeat_audio("fill_mid.wav", 40, "fill_mid.wav")
+    crop_audio("/data/user/jzt/crd/audioLLM/foa_dev/foa_dev/dev-train-sony/fold3_room21_mix001.wav", 4.0, 13.0, "man_speech.wav")
 
     # 2. 裁剪 38.0 到 43.0 秒的音频并保存
-    crop_audio("/data/user/jzt/crd/audioLLM/foa_dev/foa_dev/dev-train-tau/fold3_room4_mix007.wav", 10.0, 15.0, "fill_front_5.wav")
-    
-    # 3. 裁剪 30.0 到 35.0 秒的音频并保存
-    crop_audio("/data/user/jzt/crd/audioLLM/foa_dev/foa_dev/dev-train-tau/fold3_room4_mix007.wav", 10.0, 15.0, "fill_back_5.wav")
+    crop_audio("/data/user/jzt/crd/audioLLM/foa_dev/foa_dev/dev-train-sony/fold3_room21_mix021.wav", 60.0, 80.0, "60-80.wav")
+    crop_audio("/data/user/jzt/crd/audioLLM/foa_dev/foa_dev/dev-train-sony/fold3_room22_mix008.wav", 17.0, 27.0, "17-27.wav")
+    crop_audio("/data/user/jzt/crd/audioLLM/foa_dev/foa_dev/dev-train-sony/fold3_room22_mix008.wav", 50.0, 61.0, "50-61.wav")
 
 if __name__ == "__main__":
     main()

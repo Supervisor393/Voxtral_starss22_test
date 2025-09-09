@@ -1,3 +1,9 @@
+# proxy
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+git config --global http.proxy http://127.0.0.1:9090
+git config --global https.proxy http://127.0.0.1:9090
+
 # nvidia/voxtral-mini-3b usage
 export CUDA_DEVICE_ORDER=PCI_BUS_ID
 export CUDA_VISIBLE_DEVICES=0
