@@ -1,0 +1,34 @@
+file,win_start,win_end,win_len,target_class,target_name,model_rel_start,model_abs_start,hallucinated,raw_reply
+fold3_room21_mix002.wav,0.0,40.0,40,0,"Female speech, woman speaking",1.8,1.8,1,"[{""start"": 1.8}]"
+fold3_room21_mix002.wav,0.0,40.0,40,2,Clapping,17.6,17.6,1,"[{""start"": 17.6}]"
+fold3_room21_mix002.wav,0.0,40.0,40,6,"Walk, footsteps",19.6,19.6,1,"[{""start"": 19.6}]"
+fold3_room21_mix002.wav,0.0,40.0,40,7,"Door, open or close",23.6,23.6,1,"[{""start"": 23.6}]"
+fold3_room21_mix002.wav,0.0,40.0,40,8,Music,10.0,10.0,1,"[{""start"": 10.0}]"
+fold3_room21_mix002.wav,0.0,40.0,40,11,Bell,17.3,17.3,1,"[{""start"": 17.3}]"
+fold3_room21_mix002.wav,0.0,40.0,40,12,Knock,13.5,13.5,1,"[{""start"": 13.5}]"
+fold3_room21_mix002.wav,40.0,80.0,40,0,"Female speech, woman speaking",1.3,41.3,1,"```json
+[{""start"": 1.3}]
+```"
+fold3_room21_mix002.wav,40.0,80.0,40,2,Clapping,25.63,65.63,1,"```json
+[{""start"": 25.63}]
+```"
+fold3_room21_mix002.wav,40.0,80.0,40,6,"Walk, footsteps",15.87,55.87,1,"```json
+[{""start"": 15.87}]
+```"
+fold3_room21_mix002.wav,40.0,80.0,40,7,"Door, open or close",11.74,51.74,1,"```json
+[{""start"": 11.74}]
+```"
+fold3_room21_mix002.wav,40.0,80.0,40,8,Music,10.2,50.2,1,"[{""start"": 10.2}]"
+fold3_room21_mix002.wav,40.0,80.0,40,11,Bell,10.3,50.3,1,"[{""start"": 10.3}]"
+fold3_room21_mix002.wav,40.0,80.0,40,12,Knock,12.9,52.9,1,"[{""start"": 12.9}]"
+fold3_room21_mix002.wav,80.0,120.0,40,0,"Female speech, woman speaking",2.4,82.4,1,"[{""start"": 2.4}]"
+fold3_room21_mix002.wav,80.0,120.0,40,2,Clapping,25.2,105.2,1,"```json
+[{""start"": 25.2}]
+```"
+fold3_room21_mix002.wav,80.0,120.0,40,6,"Walk, footsteps",13.7,93.7,1,"```json
+[{""start"": 13.7}]
+```"
+fold3_room21_mix002.wav,80.0,120.0,40,7,"Door, open or close",23.6,103.6,1,"[{""start"": 23.6}]"
+fold3_room21_mix002.wav,80.0,120.0,40,8,Music,20.8,100.8,1,"[{""start"": 20.8}]"
+fold3_room21_mix002.wav,80.0,120.0,40,11,Bell,13.4,93.4,1,"[{""start"": 13.4}]"
+fold3_room21_mix002.wav,80.0,120.0,40,12,Knock,16.9,96.9,1,"[{""start"": 16.9}]"

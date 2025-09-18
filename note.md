@@ -3,6 +3,11 @@ git config --global --unset http.proxy
 git config --global --unset https.proxy
 git config --global http.proxy http://127.0.0.1:9090
 git config --global https.proxy http://127.0.0.1:9090
+PIP_INDEX_URL=https://pypi.org/simple 
+
+# https proxy
+export http_proxy=http://127.0.0.1:9090
+export https_proxy=http://127.0.0.1:9090
 
 # nvidia/voxtral-mini-3b usage
 export CUDA_DEVICE_ORDER=PCI_BUS_ID
@@ -18,6 +23,21 @@ python -m vllm.entrypoints.openai.api_server \
   --max-model-len 10000 \
   --gpu-memory-utilization 0.20 \
   --host 127.0.0.1 --port 8011
+
+## pretrainedSED audio class contrast
+⭕ 0: "Female speech, woman speaking",
+⭕ 1: "Male speech, man speaking",
+⭕ 2: "Clapping",
+❓ 3: "Telephone"->"Wind chime",
+⭕ 4: "Laughter",
+❌ 5: "Domestic sounds",
+⭕ 6: "Walk, footsteps",
+❓ 7: "Door, open or close"->Generic impact sounds,
+⭕ 8: "Music",
+⭕ 9: "Musical instrument"->"Music",
+⭕ 10: "Water tap, faucet",
+❓ 11: "Bell"->"Wind chime",
+⭕ 12: "Knock",
 
 # train_data sony/tau
 files = [

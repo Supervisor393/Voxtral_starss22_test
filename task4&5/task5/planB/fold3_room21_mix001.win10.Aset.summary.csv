@@ -1,0 +1,2 @@
+win_len,micro_precision,micro_recall,micro_f1,macro_precision,macro_recall,macro_f1,subset_acc_mean,hamming_loss_mean,jaccard_mean
+10,1.0,0.16666666666666666,0.2857142857142857,0.25,0.0625,0.1,0.125,0.3125,0.1875

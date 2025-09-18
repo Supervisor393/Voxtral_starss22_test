@@ -1,0 +1,8 @@
+win_len,target_class,target_name,n,n_hallucinated,hallucination_rate
+60,0,"Female speech, woman speaking",1,1,1.0
+60,2,Clapping,1,1,1.0
+60,6,"Walk, footsteps",1,1,1.0
+60,7,"Door, open or close",1,1,1.0
+60,8,Music,1,1,1.0
+60,11,Bell,1,1,1.0
+60,12,Knock,1,1,1.0

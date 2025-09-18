@@ -1,0 +1,4 @@
+{"file": "fold3_room21_mix001.wav", "win_start": 0.0, "win_end": 20.0, "target_ids": [0, 1, 2, 4], "reply": "```json\n[1]\n```"}
+{"file": "fold3_room21_mix001.wav", "win_start": 20.0, "win_end": 40.0, "target_ids": [0, 1, 2, 4], "reply": "```json\n[1]\n```"}
+{"file": "fold3_room21_mix001.wav", "win_start": 40.0, "win_end": 60.0, "target_ids": [0, 1, 2, 4], "reply": "```json\n[1]\n```"}
+{"file": "fold3_room21_mix001.wav", "win_start": 60.0, "win_end": 80.0, "target_ids": [0, 1, 2, 4], "reply": "```json\n[1]\n```"}

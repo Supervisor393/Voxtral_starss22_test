@@ -1,0 +1,7 @@
+file,win_start,win_end,win_len,gt_list,pred_list,subset_acc,hamming_loss,jaccard,tp,fp,fn,raw_reply
+fold3_room21_mix001.wav,0.0,30.0,30,"[1, 4]",[1],0.0,0.25,0.5,1,0,1,"```json
+[1]
+```"
+fold3_room21_mix001.wav,30.0,60.0,30,"[1, 4]",[0],0.0,0.75,0.0,0,1,2,"```json
+[0]
+```"

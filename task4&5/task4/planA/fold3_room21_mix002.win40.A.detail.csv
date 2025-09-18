@@ -1,0 +1,48 @@
+file,win_start,win_end,win_len,target_class,target_name,model_rel_start,model_abs_start,hallucinated,raw_reply
+fold3_room21_mix002.wav,0.0,40.0,40,0,"Female speech, woman speaking",0.0,0.0,1,"{""start"": 0.0}"
+fold3_room21_mix002.wav,0.0,40.0,40,2,Clapping,16.6,16.6,1,"{""start"": 16.6}"
+fold3_room21_mix002.wav,0.0,40.0,40,6,"Walk, footsteps",20.6,20.6,1,"{""start"": 20.6}"
+fold3_room21_mix002.wav,0.0,40.0,40,7,"Door, open or close",13.8,13.8,1,"{""start"": 13.8}"
+fold3_room21_mix002.wav,0.0,40.0,40,8,Music,10.7,10.7,1,"{""start"": 10.7}"
+fold3_room21_mix002.wav,0.0,40.0,40,11,Bell,11.7,11.7,1,"{""start"": 11.7}"
+fold3_room21_mix002.wav,0.0,40.0,40,12,Knock,11.7,11.7,1,"{""start"": 11.7}"
+fold3_room21_mix002.wav,40.0,80.0,40,0,"Female speech, woman speaking",0.0,40.0,1,"```json
+{""start"": 0.0}
+```"
+fold3_room21_mix002.wav,40.0,80.0,40,2,Clapping,27.5,67.5,1,"```json
+{""start"": 27.5}
+```"
+fold3_room21_mix002.wav,40.0,80.0,40,6,"Walk, footsteps",35.8,75.8,1,"{""start"": 35.8}"
+fold3_room21_mix002.wav,40.0,80.0,40,7,"Door, open or close",30.0,70.0,1,"```json
+{""start"": 30.0}
+```"
+fold3_room21_mix002.wav,40.0,80.0,40,8,Music,23.36,63.36,1,"```json
+{""start"": 23.36}
+```"
+fold3_room21_mix002.wav,40.0,80.0,40,11,Bell,11.0,51.0,1,"```json
+{""start"": 11.0}
+```"
+fold3_room21_mix002.wav,40.0,80.0,40,12,Knock,12.0,52.0,1,"```json
+{""start"": 12.0}
+```"
+fold3_room21_mix002.wav,80.0,120.0,40,0,"Female speech, woman speaking",0.0,80.0,1,"```json
+{""start"": 0.0}
+```"
+fold3_room21_mix002.wav,80.0,120.0,40,2,Clapping,13.9,93.9,1,"```json
+{""start"": 13.9}
+```"
+fold3_room21_mix002.wav,80.0,120.0,40,6,"Walk, footsteps",26.0,106.0,1,"```json
+{""start"": 26.0}
+```"
+fold3_room21_mix002.wav,80.0,120.0,40,7,"Door, open or close",27.8,107.8,1,"```json
+{""start"": 27.8}
+```"
+fold3_room21_mix002.wav,80.0,120.0,40,8,Music,13.5,93.5,1,"```json
+{""start"": 13.5}
+```"
+fold3_room21_mix002.wav,80.0,120.0,40,11,Bell,13.2,93.2,1,"```json
+{""start"": 13.2}
+```"
+fold3_room21_mix002.wav,80.0,120.0,40,12,Knock,11.93,91.93,1,"```json
+{""start"": 11.93}
+```"
