@@ -1,0 +1,29 @@
+file,win_start,win_end,win_len,target_class,target_name,model_rel_start,model_abs_start,hallucinated,raw_reply
+fold3_room21_mix002.wav,0.0,30.0,30,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,0.0,30.0,30,2,Clapping,,,0,[]
+fold3_room21_mix002.wav,0.0,30.0,30,6,"Walk, footsteps",6.47,6.47,1,"[{\""start\"": 6.47}]"
+fold3_room21_mix002.wav,0.0,30.0,30,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,0.0,30.0,30,8,Music,8.0,8.0,1,"[{\""start\"": 8.0}]"
+fold3_room21_mix002.wav,0.0,30.0,30,11,Bell,,,0,[]
+fold3_room21_mix002.wav,0.0,30.0,30,12,Knock,,,0,[]
+fold3_room21_mix002.wav,30.0,60.0,30,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,30.0,60.0,30,2,Clapping,,,0,[]
+fold3_room21_mix002.wav,30.0,60.0,30,6,"Walk, footsteps",6.54,36.54,1,"[{\""start\"": 6.54}]"
+fold3_room21_mix002.wav,30.0,60.0,30,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,30.0,60.0,30,8,Music,8.0,38.0,1,"[{\""start\"": 8.0}]"
+fold3_room21_mix002.wav,30.0,60.0,30,11,Bell,11.0,41.0,1,"[{\""start\"": \""11.00\""}]"
+fold3_room21_mix002.wav,30.0,60.0,30,12,Knock,,,0,[]
+fold3_room21_mix002.wav,60.0,90.0,30,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,60.0,90.0,30,2,Clapping,2.68,62.68,1,"[{\""start\"": 2.68}]"
+fold3_room21_mix002.wav,60.0,90.0,30,6,"Walk, footsteps",5.98,65.98,1,[{'start': 5.98}]
+fold3_room21_mix002.wav,60.0,90.0,30,7,"Door, open or close",6.98,66.98,1,[{'start': 6.98}]
+fold3_room21_mix002.wav,60.0,90.0,30,8,Music,8.0,68.0,1,[{'start': 8.0}]
+fold3_room21_mix002.wav,60.0,90.0,30,11,Bell,11.48,71.48,1,"[{\""start\"": \""11.48\""}]"
+fold3_room21_mix002.wav,60.0,90.0,30,12,Knock,,,0,[]
+fold3_room21_mix002.wav,90.0,120.0,30,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,90.0,120.0,30,2,Clapping,18.46,108.46000000000001,1,[{'start': 18.46}]
+fold3_room21_mix002.wav,90.0,120.0,30,6,"Walk, footsteps",5.97,95.97,1,[{'start': 5.97}]
+fold3_room21_mix002.wav,90.0,120.0,30,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,90.0,120.0,30,8,Music,8.0,98.0,1,[{'start': 8.0}]
+fold3_room21_mix002.wav,90.0,120.0,30,11,Bell,11.54,101.53999999999999,1,"[{\""start\"": \""11.54\""}]"
+fold3_room21_mix002.wav,90.0,120.0,30,12,Knock,,,0,[]

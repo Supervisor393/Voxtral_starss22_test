@@ -1,0 +1,15 @@
+file,win_start,win_end,win_len,target_class,target_name,model_rel_start,model_abs_start,hallucinated,raw_reply
+fold3_room21_mix002.wav,0.0,60.0,60,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,0.0,60.0,60,2,Clapping,5.89,5.89,1,"[{\""start\"": 5.89}]"
+fold3_room21_mix002.wav,0.0,60.0,60,6,"Walk, footsteps",5.98,5.98,1,"[{\""start\"": 5.98}]"
+fold3_room21_mix002.wav,0.0,60.0,60,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,0.0,60.0,60,8,Music,8.0,8.0,1,"[{""start"": 8.0}]"
+fold3_room21_mix002.wav,0.0,60.0,60,11,Bell,,,0,[]
+fold3_room21_mix002.wav,0.0,60.0,60,12,Knock,,,0,[]
+fold3_room21_mix002.wav,60.0,120.0,60,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,60.0,120.0,60,2,Clapping,2.54,62.54,1,"[{\""start\"": 2.54}]"
+fold3_room21_mix002.wav,60.0,120.0,60,6,"Walk, footsteps",5.97,65.97,1,"[{\""start\"": 5.97}]"
+fold3_room21_mix002.wav,60.0,120.0,60,7,"Door, open or close",7.43,67.43,1,[{'start': 7.43}]
+fold3_room21_mix002.wav,60.0,120.0,60,8,Music,8.0,68.0,1,[{'start': 8.0}]
+fold3_room21_mix002.wav,60.0,120.0,60,11,Bell,59.74,119.74000000000001,1,[{'start': '59.74'}]
+fold3_room21_mix002.wav,60.0,120.0,60,12,Knock,12.0,72.0,1,"[{\""start\"": 12.0}]"

@@ -1,0 +1,21 @@
+{"file": "fold3_room21_mix002.wav", "win_start": 0.0, "win_end": 40.0, "target_class": 0, "reply": "[]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 0.0, "win_end": 40.0, "target_class": 2, "reply": "[]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 0.0, "win_end": 40.0, "target_class": 6, "reply": "[{\\\"start\\\": 6.83}]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 0.0, "win_end": 40.0, "target_class": 7, "reply": "[]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 0.0, "win_end": 40.0, "target_class": 8, "reply": "[]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 0.0, "win_end": 40.0, "target_class": 11, "reply": "[]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 0.0, "win_end": 40.0, "target_class": 12, "reply": "[]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 40.0, "win_end": 80.0, "target_class": 0, "reply": "[]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 40.0, "win_end": 80.0, "target_class": 2, "reply": "[{\\\"start\\\": 2.58}]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 40.0, "win_end": 80.0, "target_class": 6, "reply": "[{'start': 5.97}]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 40.0, "win_end": 80.0, "target_class": 7, "reply": "[{'start': 6.83}]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 40.0, "win_end": 80.0, "target_class": 8, "reply": "[{'start': 8.0}]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 40.0, "win_end": 80.0, "target_class": 11, "reply": "[]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 40.0, "win_end": 80.0, "target_class": 12, "reply": "[]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 80.0, "win_end": 120.0, "target_class": 0, "reply": "[]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 80.0, "win_end": 120.0, "target_class": 2, "reply": "[{\\\"start\\\": 2.68}]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 80.0, "win_end": 120.0, "target_class": 6, "reply": "[{'start': 6.39}]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 80.0, "win_end": 120.0, "target_class": 7, "reply": "[]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 80.0, "win_end": 120.0, "target_class": 8, "reply": "[{\\\"start\\\": 8.0}]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 80.0, "win_end": 120.0, "target_class": 11, "reply": "[]"}
+{"file": "fold3_room21_mix002.wav", "win_start": 80.0, "win_end": 120.0, "target_class": 12, "reply": "[{'start': '12.86'}]"}

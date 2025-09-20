@@ -1,0 +1,197 @@
+file,win_start,win_end,win_len,target_class,target_name,model_rel_start,model_abs_start,hallucinated,raw_reply
+fold3_room21_mix002.wav,0.0,5.0,5,0,"Female speech, woman speaking",1.47,1.47,1,"[{\""start\"": 1.47}]"
+fold3_room21_mix002.wav,0.0,5.0,5,2,Clapping,2.38,2.38,1,"[{\""start\"": 2.38}]"
+fold3_room21_mix002.wav,0.0,5.0,5,6,"Walk, footsteps",3.47,3.47,1,"[{\""start\"": 3.47}]"
+fold3_room21_mix002.wav,0.0,5.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,0.0,5.0,5,8,Music,4.36,4.36,1,"[{\""start\"": 4.36}]"
+fold3_room21_mix002.wav,0.0,5.0,5,11,Bell,4.68,4.68,1,"[{\""start\"": 4.68}]"
+fold3_room21_mix002.wav,0.0,5.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,5.0,10.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,5.0,10.0,5,2,Clapping,2.43,7.43,1,"[{\""start\"": 2.43}]"
+fold3_room21_mix002.wav,5.0,10.0,5,6,"Walk, footsteps",3.48,8.48,1,"[{\""start\"": 3.48}]"
+fold3_room21_mix002.wav,5.0,10.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,5.0,10.0,5,8,Music,4.36,9.36,1,"[{\""start\"": 4.36}]"
+fold3_room21_mix002.wav,5.0,10.0,5,11,Bell,4.68,9.68,1,"[{\""start\"": 4.68}]"
+fold3_room21_mix002.wav,5.0,10.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,10.0,15.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,10.0,15.0,5,2,Clapping,2.46,12.46,1,"[{\""start\"": 2.46}]"
+fold3_room21_mix002.wav,10.0,15.0,5,6,"Walk, footsteps",4.98,14.98,1,"[{\""start\"": 4.98}]"
+fold3_room21_mix002.wav,10.0,15.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,10.0,15.0,5,8,Music,,,0,[]
+fold3_room21_mix002.wav,10.0,15.0,5,11,Bell,,,0,[]
+fold3_room21_mix002.wav,10.0,15.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,15.0,20.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,15.0,20.0,5,2,Clapping,2.46,17.46,1,"[{\""start\"": 2.46}]"
+fold3_room21_mix002.wav,15.0,20.0,5,6,"Walk, footsteps",3.74,18.740000000000002,1,"[{\""start\"": 3.74}]"
+fold3_room21_mix002.wav,15.0,20.0,5,7,"Door, open or close",3.86,18.86,1,"[{\""start\"": 3.86}]"
+fold3_room21_mix002.wav,15.0,20.0,5,8,Music,4.36,19.36,1,"[{\""start\"": 4.36}]"
+fold3_room21_mix002.wav,15.0,20.0,5,11,Bell,4.78,19.78,1,"[{\""start\"": \""4.78\""}]"
+fold3_room21_mix002.wav,15.0,20.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,20.0,25.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,20.0,25.0,5,2,Clapping,2.46,22.46,1,"[{\""start\"": 2.46}]"
+fold3_room21_mix002.wav,20.0,25.0,5,6,"Walk, footsteps",4.87,24.87,1,"[{\""start\"": 4.87}]"
+fold3_room21_mix002.wav,20.0,25.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,20.0,25.0,5,8,Music,,,0,[]
+fold3_room21_mix002.wav,20.0,25.0,5,11,Bell,4.73,24.73,1,"[{\""start\"": 4.73}]"
+fold3_room21_mix002.wav,20.0,25.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,25.0,30.0,5,0,"Female speech, woman speaking",3.46,28.46,1,"[{\""start\"": 3.46}]"
+fold3_room21_mix002.wav,25.0,30.0,5,2,Clapping,2.48,27.48,1,"[{\""start\"": 2.48}]"
+fold3_room21_mix002.wav,25.0,30.0,5,6,"Walk, footsteps",4.89,29.89,1,"[{\""start\"": 4.89}]"
+fold3_room21_mix002.wav,25.0,30.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,25.0,30.0,5,8,Music,4.36,29.36,1,"[{\""start\"": 4.36}]"
+fold3_room21_mix002.wav,25.0,30.0,5,11,Bell,4.86,29.86,1,"[{\""start\"": 4.86}]"
+fold3_room21_mix002.wav,25.0,30.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,30.0,35.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,30.0,35.0,5,2,Clapping,2.34,32.34,1,"[{\""start\"": 2.34}]"
+fold3_room21_mix002.wav,30.0,35.0,5,6,"Walk, footsteps",3.78,33.78,1,"[{\""start\"": 3.78}]"
+fold3_room21_mix002.wav,30.0,35.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,30.0,35.0,5,8,Music,,,0,[]
+fold3_room21_mix002.wav,30.0,35.0,5,11,Bell,,,0,[]
+fold3_room21_mix002.wav,30.0,35.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,35.0,40.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,35.0,40.0,5,2,Clapping,2.38,37.38,1,"[{\""start\"": 2.38}]"
+fold3_room21_mix002.wav,35.0,40.0,5,6,"Walk, footsteps",4.98,39.980000000000004,1,[{'start': 4.98}]
+fold3_room21_mix002.wav,35.0,40.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,35.0,40.0,5,8,Music,4.79,39.79,1,"[{\""start\"": 4.79}]"
+fold3_room21_mix002.wav,35.0,40.0,5,11,Bell,4.73,39.730000000000004,1,"[{\""start\"": 4.73}]"
+fold3_room21_mix002.wav,35.0,40.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,40.0,45.0,5,0,"Female speech, woman speaking",2.48,42.48,1,"[{\""start\"": 2.48}]"
+fold3_room21_mix002.wav,40.0,45.0,5,2,Clapping,2.46,42.46,1,"[{\""start\"": 2.46}]"
+fold3_room21_mix002.wav,40.0,45.0,5,6,"Walk, footsteps",3.48,43.48,1,"[{\""start\"": 3.48}]"
+fold3_room21_mix002.wav,40.0,45.0,5,7,"Door, open or close",3.86,43.86,1,"[{\""start\"": 3.86}]"
+fold3_room21_mix002.wav,40.0,45.0,5,8,Music,4.36,44.36,1,"[{\""start\"": 4.36}]"
+fold3_room21_mix002.wav,40.0,45.0,5,11,Bell,4.38,44.38,1,"[{\""start\"": 4.38}]"
+fold3_room21_mix002.wav,40.0,45.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,45.0,50.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,45.0,50.0,5,2,Clapping,2.38,47.38,1,"[{\""start\"": 2.38}]"
+fold3_room21_mix002.wav,45.0,50.0,5,6,"Walk, footsteps",4.98,49.980000000000004,1,"[{\""start\"": 4.98}]"
+fold3_room21_mix002.wav,45.0,50.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,45.0,50.0,5,8,Music,4.73,49.730000000000004,1,"[{\""start\"": 4.73}]"
+fold3_room21_mix002.wav,45.0,50.0,5,11,Bell,4.38,49.38,1,"[{\""start\"": \""4.38\""}]"
+fold3_room21_mix002.wav,45.0,50.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,50.0,55.0,5,0,"Female speech, woman speaking",2.79,52.79,1,"[{\""start\"": 2.79}]"
+fold3_room21_mix002.wav,50.0,55.0,5,2,Clapping,2.43,52.43,1,"[{\""start\"": 2.43}]"
+fold3_room21_mix002.wav,50.0,55.0,5,6,"Walk, footsteps",3.74,53.74,1,"[{\""start\"": 3.74}]"
+fold3_room21_mix002.wav,50.0,55.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,50.0,55.0,5,8,Music,4.36,54.36,1,"[{\""start\"": 4.36}]"
+fold3_room21_mix002.wav,50.0,55.0,5,11,Bell,4.78,54.78,1,"[{\""start\"": 4.78}]"
+fold3_room21_mix002.wav,50.0,55.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,55.0,60.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,55.0,60.0,5,2,Clapping,2.46,57.46,1,"[{\""start\"": 2.46}]"
+fold3_room21_mix002.wav,55.0,60.0,5,6,"Walk, footsteps",4.98,59.980000000000004,1,[{'start': 4.98}]
+fold3_room21_mix002.wav,55.0,60.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,55.0,60.0,5,8,Music,,,0,"[{\""start\"": 8.0}]"
+fold3_room21_mix002.wav,55.0,60.0,5,11,Bell,,,0,[]
+fold3_room21_mix002.wav,55.0,60.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,60.0,65.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,60.0,65.0,5,2,Clapping,2.46,62.46,1,"[{\""start\"": 2.46}]"
+fold3_room21_mix002.wav,60.0,65.0,5,6,"Walk, footsteps",3.74,63.74,1,"[{\""start\"": 3.74}]"
+fold3_room21_mix002.wav,60.0,65.0,5,7,"Door, open or close",3.86,63.86,1,"[{\""start\"": 3.86}]"
+fold3_room21_mix002.wav,60.0,65.0,5,8,Music,4.79,64.79,1,"[{\""start\"": 4.79}]"
+fold3_room21_mix002.wav,60.0,65.0,5,11,Bell,4.86,64.86,1,"[{\""start\"": \""4.86\""}]"
+fold3_room21_mix002.wav,60.0,65.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,65.0,70.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,65.0,70.0,5,2,Clapping,2.46,67.46,1,"[{\""start\"": 2.46}]"
+fold3_room21_mix002.wav,65.0,70.0,5,6,"Walk, footsteps",3.48,68.48,1,"[{\""start\"": 3.48}]"
+fold3_room21_mix002.wav,65.0,70.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,65.0,70.0,5,8,Music,,,0,[]
+fold3_room21_mix002.wav,65.0,70.0,5,11,Bell,4.68,69.68,1,"[{\""start\"": 4.68}]"
+fold3_room21_mix002.wav,65.0,70.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,70.0,75.0,5,0,"Female speech, woman speaking",3.46,73.46,1,"[{\""start\"": 3.46}]"
+fold3_room21_mix002.wav,70.0,75.0,5,2,Clapping,2.46,72.46,1,"[{\""start\"": 2.46}]"
+fold3_room21_mix002.wav,70.0,75.0,5,6,"Walk, footsteps",4.89,74.89,1,"[{\""start\"": 4.89}]"
+fold3_room21_mix002.wav,70.0,75.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,70.0,75.0,5,8,Music,4.36,74.36,1,"[{\""start\"": 4.36}]"
+fold3_room21_mix002.wav,70.0,75.0,5,11,Bell,,,0,[]
+fold3_room21_mix002.wav,70.0,75.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,75.0,80.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,75.0,80.0,5,2,Clapping,2.46,77.46,1,"[{\""start\"": 2.46}]"
+fold3_room21_mix002.wav,75.0,80.0,5,6,"Walk, footsteps",3.47,78.47,1,"[{\""start\"": 3.47}]"
+fold3_room21_mix002.wav,75.0,80.0,5,7,"Door, open or close",4.86,79.86,1,[{'start': 4.86}]
+fold3_room21_mix002.wav,75.0,80.0,5,8,Music,4.79,79.79,1,[{'start': 4.79}]
+fold3_room21_mix002.wav,75.0,80.0,5,11,Bell,4.79,79.79,1,"[{\""start\"": 4.79}]"
+fold3_room21_mix002.wav,75.0,80.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,80.0,85.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,80.0,85.0,5,2,Clapping,2.43,82.43,1,"[{\""start\"": 2.43}]"
+fold3_room21_mix002.wav,80.0,85.0,5,6,"Walk, footsteps",3.48,83.48,1,"[{\""start\"": 3.48}]"
+fold3_room21_mix002.wav,80.0,85.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,80.0,85.0,5,8,Music,4.73,84.73,1,"[{\""start\"": 4.73}]"
+fold3_room21_mix002.wav,80.0,85.0,5,11,Bell,4.36,84.36,1,"[{\""start\"": 4.36}]"
+fold3_room21_mix002.wav,80.0,85.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,85.0,90.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,85.0,90.0,5,2,Clapping,2.38,87.38,1,"[{\""start\"": 2.38}]"
+fold3_room21_mix002.wav,85.0,90.0,5,6,"Walk, footsteps",3.78,88.78,1,"[{\""start\"": 3.78}]"
+fold3_room21_mix002.wav,85.0,90.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,85.0,90.0,5,8,Music,,,0,[]
+fold3_room21_mix002.wav,85.0,90.0,5,11,Bell,4.38,89.38,1,"[{\""start\"": 4.38}]"
+fold3_room21_mix002.wav,85.0,90.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,90.0,95.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,90.0,95.0,5,2,Clapping,2.46,92.46,1,"[{\""start\"": 2.46}]"
+fold3_room21_mix002.wav,90.0,95.0,5,6,"Walk, footsteps",4.89,94.89,1,"[{\""start\"": 4.89}]"
+fold3_room21_mix002.wav,90.0,95.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,90.0,95.0,5,8,Music,,,0,[]
+fold3_room21_mix002.wav,90.0,95.0,5,11,Bell,,,0,[]
+fold3_room21_mix002.wav,90.0,95.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,95.0,100.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,95.0,100.0,5,2,Clapping,2.43,97.43,1,"[{\""start\"": 2.43}]"
+fold3_room21_mix002.wav,95.0,100.0,5,6,"Walk, footsteps",4.87,99.87,1,"[{\""start\"": 4.87}]"
+fold3_room21_mix002.wav,95.0,100.0,5,7,"Door, open or close",3.86,98.86,1,"[{\""start\"": 3.86}]"
+fold3_room21_mix002.wav,95.0,100.0,5,8,Music,4.36,99.36,1,"[{\""start\"": 4.36}]"
+fold3_room21_mix002.wav,95.0,100.0,5,11,Bell,4.36,99.36,1,"[{\""start\"": 4.36}]"
+fold3_room21_mix002.wav,95.0,100.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,100.0,105.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,100.0,105.0,5,2,Clapping,2.46,102.46,1,"[{\""start\"": 2.46}]"
+fold3_room21_mix002.wav,100.0,105.0,5,6,"Walk, footsteps",3.47,103.47,1,"[{\""start\"": 3.47}]"
+fold3_room21_mix002.wav,100.0,105.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,100.0,105.0,5,8,Music,,,0,"[{\""start\"": 8.0}]"
+fold3_room21_mix002.wav,100.0,105.0,5,11,Bell,4.68,104.68,1,"[{\""start\"": \""4.68\""}]"
+fold3_room21_mix002.wav,100.0,105.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,105.0,110.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,105.0,110.0,5,2,Clapping,2.48,107.48,1,"[{\""start\"": 2.48}]"
+fold3_room21_mix002.wav,105.0,110.0,5,6,"Walk, footsteps",3.74,108.74,1,"[{\""start\"": 3.74}]"
+fold3_room21_mix002.wav,105.0,110.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,105.0,110.0,5,8,Music,,,0,[]
+fold3_room21_mix002.wav,105.0,110.0,5,11,Bell,4.36,109.36,1,"[{\""start\"": 4.36}]"
+fold3_room21_mix002.wav,105.0,110.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,110.0,115.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,110.0,115.0,5,2,Clapping,2.46,112.46,1,"[{\""start\"": 2.46}]"
+fold3_room21_mix002.wav,110.0,115.0,5,6,"Walk, footsteps",3.48,113.48,1,"[{\""start\"": 3.48}]"
+fold3_room21_mix002.wav,110.0,115.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,110.0,115.0,5,8,Music,4.36,114.36,1,"[{\""start\"": 4.36}]"
+fold3_room21_mix002.wav,110.0,115.0,5,11,Bell,4.78,114.78,1,"[{\""start\"": \""4.78\""}]"
+fold3_room21_mix002.wav,110.0,115.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,115.0,120.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,115.0,120.0,5,2,Clapping,2.43,117.43,1,"[{\""start\"": 2.43}]"
+fold3_room21_mix002.wav,115.0,120.0,5,6,"Walk, footsteps",3.84,118.84,1,"[{\""start\"": 3.84}]"
+fold3_room21_mix002.wav,115.0,120.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,115.0,120.0,5,8,Music,,,0,[]
+fold3_room21_mix002.wav,115.0,120.0,5,11,Bell,4.86,119.86,1,"[{\""start\"": \""4.86\""}]"
+fold3_room21_mix002.wav,115.0,120.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,120.0,125.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,120.0,125.0,5,2,Clapping,2.46,122.46,1,"[{\""start\"": 2.46}]"
+fold3_room21_mix002.wav,120.0,125.0,5,6,"Walk, footsteps",3.78,123.78,1,"[{\""start\"": 3.78}]"
+fold3_room21_mix002.wav,120.0,125.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,120.0,125.0,5,8,Music,4.76,124.76,1,"[{\""start\"": 4.76}]"
+fold3_room21_mix002.wav,120.0,125.0,5,11,Bell,4.36,124.36,1,"[{\""start\"": 4.36}]"
+fold3_room21_mix002.wav,120.0,125.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,125.0,130.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,125.0,130.0,5,2,Clapping,2.46,127.46,1,"[{\""start\"": 2.46}]"
+fold3_room21_mix002.wav,125.0,130.0,5,6,"Walk, footsteps",3.78,128.78,1,"[{\""start\"": 3.78}]"
+fold3_room21_mix002.wav,125.0,130.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,125.0,130.0,5,8,Music,4.79,129.79,1,"[{\""start\"": 4.79}]"
+fold3_room21_mix002.wav,125.0,130.0,5,11,Bell,,,0,[]
+fold3_room21_mix002.wav,125.0,130.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,130.0,135.0,5,0,"Female speech, woman speaking",3.47,133.47,1,"[{\""start\"": 3.47}]"
+fold3_room21_mix002.wav,130.0,135.0,5,2,Clapping,2.46,132.46,1,"[{\""start\"": 2.46}]"
+fold3_room21_mix002.wav,130.0,135.0,5,6,"Walk, footsteps",3.48,133.48,1,"[{\""start\"": 3.48}]"
+fold3_room21_mix002.wav,130.0,135.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,130.0,135.0,5,8,Music,4.79,134.79,1,"[{\""start\"": 4.79}]"
+fold3_room21_mix002.wav,130.0,135.0,5,11,Bell,4.78,134.78,1,"[{\""start\"": \""4.78\""}]"
+fold3_room21_mix002.wav,130.0,135.0,5,12,Knock,,,0,[]
+fold3_room21_mix002.wav,135.0,140.0,5,0,"Female speech, woman speaking",,,0,[]
+fold3_room21_mix002.wav,135.0,140.0,5,2,Clapping,2.43,137.43,1,"[{\""start\"": 2.43}]"
+fold3_room21_mix002.wav,135.0,140.0,5,6,"Walk, footsteps",4.89,139.89,1,"[{\""start\"": 4.89}]"
+fold3_room21_mix002.wav,135.0,140.0,5,7,"Door, open or close",,,0,[]
+fold3_room21_mix002.wav,135.0,140.0,5,8,Music,,,0,"[{\""start\"": 8.0}]"
+fold3_room21_mix002.wav,135.0,140.0,5,11,Bell,4.86,139.86,1,"[{\""start\"": \""4.86\""}]"
+fold3_room21_mix002.wav,135.0,140.0,5,12,Knock,,,0,[]

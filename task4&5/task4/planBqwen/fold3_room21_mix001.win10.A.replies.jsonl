@@ -1,0 +1,56 @@
+{"file": "fold3_room21_mix001.wav", "win_start": 0.0, "win_end": 10.0, "target_class": 0, "reply": "[{\\\"start\\\": 3.79}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 0.0, "win_end": 10.0, "target_class": 2, "reply": "[{\\\"start\\\": 2.46}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 0.0, "win_end": 10.0, "target_class": 6, "reply": "[{\\\"start\\\": 6.34}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 0.0, "win_end": 10.0, "target_class": 7, "reply": "[{\\\"start\\\": 6.98}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 0.0, "win_end": 10.0, "target_class": 8, "reply": "[{\\\"start\\\": 8.0}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 0.0, "win_end": 10.0, "target_class": 11, "reply": "[{\\\"start\\\": \\\"2.78\\\"}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 0.0, "win_end": 10.0, "target_class": 12, "reply": "[{\\\"start\\\": 9.74}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 10.0, "win_end": 20.0, "target_class": 0, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 10.0, "win_end": 20.0, "target_class": 2, "reply": "[{\\\"start\\\": 2.54}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 10.0, "win_end": 20.0, "target_class": 6, "reply": "[{\\\"start\\\": 6.54}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 10.0, "win_end": 20.0, "target_class": 7, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 10.0, "win_end": 20.0, "target_class": 8, "reply": "[{\\\"start\\\": 8.0}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 10.0, "win_end": 20.0, "target_class": 11, "reply": "[{\\\"start\\\": 9.54}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 10.0, "win_end": 20.0, "target_class": 12, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 20.0, "win_end": 30.0, "target_class": 0, "reply": "[{\\\"start\\\": 4.79}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 20.0, "win_end": 30.0, "target_class": 2, "reply": "[{\\\"start\\\": 2.58}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 20.0, "win_end": 30.0, "target_class": 6, "reply": "[{\\\"start\\\": 6.45}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 20.0, "win_end": 30.0, "target_class": 7, "reply": "[{\\\"start\\\": 6.98}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 20.0, "win_end": 30.0, "target_class": 8, "reply": "[{\\\"start\\\": 8.0}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 20.0, "win_end": 30.0, "target_class": 11, "reply": "[{\\\"start\\\": 9.54}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 20.0, "win_end": 30.0, "target_class": 12, "reply": "[{\\\"start\\\": 9.54}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 30.0, "win_end": 40.0, "target_class": 0, "reply": "[{\\\"start\\\": 4.97}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 30.0, "win_end": 40.0, "target_class": 2, "reply": "[{\\\"start\\\": 2.48}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 30.0, "win_end": 40.0, "target_class": 6, "reply": "[{\\\"start\\\": 6.58}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 30.0, "win_end": 40.0, "target_class": 7, "reply": "[{'start': 6.98}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 30.0, "win_end": 40.0, "target_class": 8, "reply": "[{\"start\": 8.0}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 30.0, "win_end": 40.0, "target_class": 11, "reply": "[{\\\"start\\\": \\\"2.85\\\"}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 30.0, "win_end": 40.0, "target_class": 12, "reply": "[{\\\"start\\\": 12.0}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 40.0, "win_end": 50.0, "target_class": 0, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 40.0, "win_end": 50.0, "target_class": 2, "reply": "[{'start': 2.54}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 40.0, "win_end": 50.0, "target_class": 6, "reply": "```json\n[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 40.0, "win_end": 50.0, "target_class": 7, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 40.0, "win_end": 50.0, "target_class": 8, "reply": "[{\\\"start\\\": 8.0}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 40.0, "win_end": 50.0, "target_class": 11, "reply": "[{\\\"start\\\": \\\"9.74\\\"}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 40.0, "win_end": 50.0, "target_class": 12, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 50.0, "win_end": 60.0, "target_class": 0, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 50.0, "win_end": 60.0, "target_class": 2, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 50.0, "win_end": 60.0, "target_class": 6, "reply": "[{\\\"start\\\": 6.54}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 50.0, "win_end": 60.0, "target_class": 7, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 50.0, "win_end": 60.0, "target_class": 8, "reply": "[{\\\"start\\\": 8.0}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 50.0, "win_end": 60.0, "target_class": 11, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 50.0, "win_end": 60.0, "target_class": 12, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 60.0, "win_end": 70.0, "target_class": 0, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 60.0, "win_end": 70.0, "target_class": 2, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 60.0, "win_end": 70.0, "target_class": 6, "reply": "```json\n[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 60.0, "win_end": 70.0, "target_class": 7, "reply": "[{\\\"start\\\": 6.98}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 60.0, "win_end": 70.0, "target_class": 8, "reply": "[{\\\"start\\\": 8.0}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 60.0, "win_end": 70.0, "target_class": 11, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 60.0, "win_end": 70.0, "target_class": 12, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 70.0, "win_end": 80.0, "target_class": 0, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 70.0, "win_end": 80.0, "target_class": 2, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 70.0, "win_end": 80.0, "target_class": 6, "reply": "```json\n[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 70.0, "win_end": 80.0, "target_class": 7, "reply": "[]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 70.0, "win_end": 80.0, "target_class": 8, "reply": "[{\"start\": 8.0}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 70.0, "win_end": 80.0, "target_class": 11, "reply": "[{\\\"start\\\": \\\"9.74\\\"}]"}
+{"file": "fold3_room21_mix001.wav", "win_start": 70.0, "win_end": 80.0, "target_class": 12, "reply": "[]"}

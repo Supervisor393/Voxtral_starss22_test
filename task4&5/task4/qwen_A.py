@@ -1,37 +1,35 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-"""
-A-Variant: Hallucination Probe w/o "empty-array" rule
-- 提示词只要求返回开始时间，强制 JSON，对不存在的类不提供“空数组”出口
-- 若模型返回合法 {"start": seconds} 且 0<=seconds<win_len -> 记为胡说
-- 否则（无法解析/不在范围/非 JSON 等） -> 记为未胡说
-
-依赖：
-  pip install soundfile pandas requests mistral_common
-"""
-
 import os
 import re
 import json
 import math
 import soundfile as sf
 import pandas as pd
-import requests
+import librosa
+from io import BytesIO
+from urllib.request import urlopen
+from transformers import Qwen2AudioForConditionalGeneration, AutoProcessor
 from typing import List, Optional
 
 # ====================== 配置区（请按需修改） ======================
 
-# 推理服务
-VLLM_ENDPOINT    = "http://127.0.0.1:8011/v1/chat/completions"
-MODEL_NAME       = "voxtral-mini-3b"
-TEMPERATURE      = 0.2
-TOP_P            = 0.95
-MAX_TOKENS       = 4096
-REQUEST_TIMEOUT  = 300  # seconds
+# 加载 Qwen 模型和处理器
+  # 设置目标采样率
 
+# 加载处理器并传递采样率参数
+processor = AutoProcessor.from_pretrained(
+    "Qwen/Qwen2-Audio-7B-Instruct",
+    sampling_rate=16000  # 确保传递采样率
+)
+
+# 加载模型
+model = Qwen2AudioForConditionalGeneration.from_pretrained(
+    "/data/user/jzt/.cache/modelscope/hub/models/Qwen/Qwen2-Audio-7B-Instruct", 
+    local_files_only=True,  # 确保只从本地加载
+    device_map="auto"
+)
+_QWEN_TARGET_SR = processor.feature_extractor.sampling_rate
 # 窗口长度（秒）
-WIN_LENS_ABS = [5, 10, 20, 30, 40, 50, 60]
+WIN_LENS_ABS = [5,10,20,30,40,50,60]
 
 # 类别映射（按你的实验定义）
 CLASS_ID_TO_NAME = {
@@ -50,11 +48,6 @@ CLASS_ID_TO_NAME = {
     12: "Knock",
 }
 
-# ===== 你可自定义“理应不存在”的类别清单（示例：除 1/4 外全部）=====
-# ABSENT_CANDIDATES = [cid for cid in CLASS_ID_TO_NAME if cid not in {1, 4}]
-# 也可手写：
-ABSENT_CANDIDATES = [0,2,6,7,8,11,12]
-
 # 要评测的音频（保证整条仅含 {1,4}）
 FILES = [
     "/data/user/jzt/crd/audioLLM/foa_dev/foa_dev/dev-train-sony/fold3_room21_mix001.wav",
@@ -66,54 +59,11 @@ DETAIL_CSV_TPL    = "{basename}.win{win:02d}.A.detail.csv"
 SUMMARY_CSV_TPL   = "{basename}.win{win:02d}.A.summary.csv"
 REPLIES_JSONL_TPL = "{basename}.win{win:02d}.A.replies.jsonl"
 
-# ===============================================================
+# 类别映射：我们要分析的类别（如 "胡说" 检测的类别）
+ABSENT_CANDIDATES = [0, 2, 6, 7, 8, 11, 12]
 
+# ====================== 音频切窗 ======================
 
-# ---------------- Robust JSON 顶层数组/对象提取 ----------------
-def extract_top_level_json(text: str) -> Optional[str]:
-    """
-    尝试从文本中提取一个顶层 JSON 值（对象或数组皆可）。
-    优先抓取 ```json ... ``` 或 ``` ... ``` 里的内容，否则全串搜索。
-    """
-    if not text:
-        return None
-    m = re.search(r"```(?:json)?\s*(.*?)```", text, flags=re.S | re.I)
-    if m:
-        candidate = m.group(1)
-        j = _find_top_level_json(candidate)
-        if j is not None:
-            return j
-    return _find_top_level_json(text)
-
-def _find_top_level_json(s: str) -> Optional[str]:
-    # 找对象或数组起点
-    for start_char, end_char in [('{', '}'), ('[', ']')]:
-        start = s.find(start_char)
-        while start != -1:
-            i, depth, in_str, esc = start, 0, False, False
-            while i < len(s):
-                ch = s[i]
-                if in_str:
-                    if esc:
-                        esc = False
-                    elif ch == '\\':
-                        esc = True
-                    elif ch == '"':
-                        in_str = False
-                else:
-                    if ch == '"':
-                        in_str = True
-                    elif ch == start_char:
-                        depth += 1
-                    elif ch == end_char:
-                        depth -= 1
-                        if depth == 0:
-                            return s[start:i+1]
-                i += 1
-            start = s.find(start_char, start + 1)
-    return None
-
-# ---------------- 音频切窗 ----------------
 def split_fixed_win(wav_path: str, win_len: float):
     """
     返回 (wav, sr, windows)
@@ -121,8 +71,7 @@ def split_fixed_win(wav_path: str, win_len: float):
     """
     wav, sr = sf.read(wav_path)
     if hasattr(wav, "ndim") and wav.ndim > 1:
-        import numpy as np
-        wav = wav.mean(axis=1)
+        wav = wav.mean(axis=1)  # 将多声道转换为单声道
     n = len(wav)
     samples = int(round(win_len * sr))
     if samples <= 0:
@@ -136,25 +85,16 @@ def split_fixed_win(wav_path: str, win_len: float):
         i += samples
     return wav, sr, wins
 
+def load_audio_from_url(url: str, processor):
+    """
+    从 URL 加载音频
+    """
+    audio_data = librosa.load(BytesIO(urlopen(url).read()), sr=processor.feature_extractor.sampling_rate)[0]
+    return audio_data
 
-# ---------------- 音频数组 -> AudioChunk ----------------
-def array_to_audiochunk(arr, sr):
-    import tempfile
-    from mistral_common.protocol.instruct.messages import AudioChunk
-    from mistral_common.audio import Audio
-    with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-        tmp_path = tmp.name
-    try:
-        sf.write(tmp_path, arr, sr, format="wav")
-        audio = Audio.from_file(tmp_path, strict=False)
-        return AudioChunk.from_audio(audio)
-    finally:
-        try:
-            os.remove(tmp_path)
-        except OSError:
-            pass
+# ====================== 提示词和模型调用 ======================
 
-# ---------------- A 版提示词（仅要求开始时间） ----------------
+
 def build_prompt_A(target_class: int, win_len: float) -> str:
     """
     只让模型返回开始时间；不提供“空数组”规则；强制严格 JSON 对象。
@@ -171,51 +111,102 @@ def build_prompt_A(target_class: int, win_len: float) -> str:
     )
 
 def call_model_A(audio_arr, sr, target_class: int, win_len: float) -> str:
-    from mistral_common.protocol.instruct.messages import TextChunk, UserMessage
-    audio_chunk = array_to_audiochunk(audio_arr, sr)
-    text_chunk  = TextChunk(text=build_prompt_A(target_class, win_len))
-    user_msg    = UserMessage(content=[audio_chunk, text_chunk]).to_openai()
-    payload = {
-        "model": MODEL_NAME,
-        "messages": [user_msg],
-        "temperature": TEMPERATURE,
-        "top_p": TOP_P,
-        "max_tokens": MAX_TOKENS,
-    }
-    r = requests.post(VLLM_ENDPOINT, json=payload, timeout=REQUEST_TIMEOUT)
-    if not r.ok:
-        raise RuntimeError(f"HTTP {r.status_code}: {r.text}")
-    return r.json()["choices"][0]["message"]["content"]
+    """
+    调用 Qwen 模型进行推理并获取开始时间的预测。
+    """
+    # 生成提示词
+    text = build_prompt_A(target_class, win_len)
 
+    # Qwen 要求的采样率为 16k
+    if sr != _QWEN_TARGET_SR:
+        audio_arr = librosa.resample(audio_arr, orig_sr=sr, target_sr=_QWEN_TARGET_SR)
 
-# ---------------- 解析：若得到合法 start 则视为胡说 ----------------
+    # 按照 ChatML 构造会话输入
+    conversation = [
+        {"role": "user", "content": [
+            {"type": "audio", "audio_url": None},  # 本地数组，不用 URL
+            {"type": "text", "text": text},
+        ]},
+    ]
+    
+    # 构建输入文本
+    inputs = processor.apply_chat_template(conversation, add_generation_prompt=True, tokenize=False)
+
+    # 将音频和文本输入一起传递给模型
+    inputs = processor(text=inputs, audio=audio_arr, return_tensors="pt", padding=True)
+
+    # 将输入数据移动到模型所在的设备
+    inputs = {key: value.to(model.device) for key, value in inputs.items()}
+
+    # 调用 Qwen 模型进行生成
+    generate_ids = model.generate(**inputs, max_length=4096)
+
+    # 只保留新生成的部分（去除输入部分）
+    input_ids_length = inputs['input_ids'].size(1)  # 获取输入的长度
+    generate_ids = generate_ids[:, input_ids_length:]  # 去除输入部分
+
+    # 解析并返回模型响应
+    return processor.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
+
+# ====================== Robust JSON 顶层数组/对象提取 ======================
+
+import json
+import re
+from typing import Optional
+
+def extract_floats_from_reply(reply: str) -> Optional[float]:
+    """
+    从模型的回复中提取浮点数（如 2, 2.3, 2.）。
+    """
+    # 正则表达式，匹配浮动数字（包括整数和小数）
+    number_pattern = r"-?\d*\.\d+|-?\d+"
+    
+    # 查找所有匹配的数字
+    numbers = re.findall(number_pattern, reply)
+    
+    # 如果找到了浮动数字，返回第一个匹配的数字（转换为浮动类型）
+    if numbers:
+        return float(numbers[0])  # 返回第一个匹配的数字
+    return None
+
+def clean_reply(reply: str) -> str:
+    """
+    清理并标准化 `reply` 字段中的格式，处理引号、转义字符，及缺失的括号。
+    """
+    # 替换单引号为双引号，并去除转义字符
+    cleaned_reply = reply.replace("'", "\"")  # 将单引号替换为双引号
+    cleaned_reply = re.sub(r'\\\"', '"', cleaned_reply)  # 处理转义字符
+
+    # 检查 JSON 是否完整，如果缺少右括号，补充
+    if cleaned_reply.count("{") == cleaned_reply.count("}") - 1:
+        cleaned_reply += "}"  # 补充右大括号
+    elif cleaned_reply.count("[") == cleaned_reply.count("]") - 1:
+        cleaned_reply += "]"  # 补充右中括号
+
+    # 如果仍然不完整，尝试补充到合法 JSON
+    if not cleaned_reply.endswith("}") and not cleaned_reply.endswith("]"):
+        cleaned_reply += "}"  # 默认补充大括号
+
+    return cleaned_reply
+
 def parse_A_reply_for_start(raw_reply: str, win_len: float) -> Optional[float]:
     """
-    返回：
-      - None  -> 未胡说（没解析到合法 start）
-      - float -> 胡说（解析到 start 且在 [0, win_len)）
+    解析模型的回复，返回合法的开始时间（浮动数字），如果没有则返回 None。
     """
-    j = extract_top_level_json(raw_reply)
-    if not j:
-        return None
-    try:
-        data = json.loads(j)
-    except Exception:
-        return None
-    if not isinstance(data, dict):
-        return None
-    if "start" not in data:
-        return None
-    try:
-        st = float(data["start"])
-    except Exception:
-        return None
-    if math.isfinite(st) and 0.0 <= st < float(win_len) + 1e-6:
-        return float(st)
+    # 清理并标准化 reply 字段中的格式
+    cleaned_reply = clean_reply(raw_reply)
+    
+    # 使用正则提取浮动数字（start 时间）
+    start_time = extract_floats_from_reply(cleaned_reply)
+    
+    # 确保返回的 start 时间在 [0, win_len) 范围内
+    if start_time is not None and 0.0 <= start_time < win_len:
+        return start_time
     return None
 
 
-# ---------------- 主流程 ----------------
+# ====================== 结果保存与统计 ======================
+
 def ensure_dir_for(path: str):
     d = os.path.dirname(path)
     if d:
@@ -251,6 +242,7 @@ def run_A_for_file(wav_path: str):
                         "reply": raw
                     }, ensure_ascii=False) + "\n")
 
+                    # 解析并判断是否为胡说
                     rel = parse_A_reply_for_start(raw, win_len)
                     hallucinated = 1 if rel is not None else 0
                     abs_start = t0 + rel if rel is not None else ""
@@ -284,8 +276,7 @@ def run_A_for_file(wav_path: str):
         else:
             print(f"[WARN] no windows produced for {base} @ {win_len}s")
 
-
-# ---------------- 入口 ----------------
+# 入口函数
 if __name__ == "__main__":
     for wav_path in FILES:
         if not os.path.exists(wav_path):

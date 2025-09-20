@@ -1,0 +1,6 @@
+scope,win_len,class,tp,fp,fn,tn,accuracy,precision,recall,f1
+overall,60,,1,1,1,1,0.5,0.5,0.5,0.5
+per_class,60,0,0,0,0,1,1.0,0.0,0.0,0.0
+per_class,60,1,1,0,0,0,1.0,1.0,1.0,1.0
+per_class,60,2,0,1,0,0,0.0,0.0,0.0,0.0
+per_class,60,4,0,0,1,0,0.0,0.0,0.0,0.0

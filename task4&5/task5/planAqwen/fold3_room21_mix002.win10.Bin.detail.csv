@@ -1,0 +1,46 @@
+file,win_start,win_end,win_len,class,class_name,gt_present,pred_present,correct,raw_reply
+fold3_room21_mix002.wav,0.0,10.0,10,0,"Female speech, woman speaking",0,0,1,{'present': false}
+fold3_room21_mix002.wav,0.0,10.0,10,1,"Male speech, man speaking",1,1,1,"{""present"": true}"
+fold3_room21_mix002.wav,0.0,10.0,10,2,Clapping,0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,10.0,20.0,10,0,"Female speech, woman speaking",0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,10.0,20.0,10,1,"Male speech, man speaking",1,0,0,"{""present"": false}"
+fold3_room21_mix002.wav,10.0,20.0,10,2,Clapping,0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,20.0,30.0,10,0,"Female speech, woman speaking",0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,20.0,30.0,10,1,"Male speech, man speaking",1,1,1,"{""present"": true}"
+fold3_room21_mix002.wav,20.0,30.0,10,2,Clapping,0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,30.0,40.0,10,0,"Female speech, woman speaking",0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,30.0,40.0,10,1,"Male speech, man speaking",1,1,1,"{""present"": true}"
+fold3_room21_mix002.wav,30.0,40.0,10,2,Clapping,0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,30.0,40.0,10,4,Laughter,1,0,0,"{""present"": false}"
+fold3_room21_mix002.wav,40.0,50.0,10,0,"Female speech, woman speaking",0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,40.0,50.0,10,1,"Male speech, man speaking",1,1,1,"{""present"": true}"
+fold3_room21_mix002.wav,40.0,50.0,10,2,Clapping,0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,50.0,60.0,10,0,"Female speech, woman speaking",0,0,1,{'present': false}
+fold3_room21_mix002.wav,50.0,60.0,10,1,"Male speech, man speaking",1,1,1,"{""present"": true}"
+fold3_room21_mix002.wav,50.0,60.0,10,2,Clapping,0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,50.0,60.0,10,4,Laughter,1,0,0,"{""present"": false}"
+fold3_room21_mix002.wav,60.0,70.0,10,0,"Female speech, woman speaking",0,0,1,{'present': false}
+fold3_room21_mix002.wav,60.0,70.0,10,1,"Male speech, man speaking",1,0,0,"{""present"": false}"
+fold3_room21_mix002.wav,60.0,70.0,10,2,Clapping,0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,70.0,80.0,10,0,"Female speech, woman speaking",0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,70.0,80.0,10,1,"Male speech, man speaking",1,0,0,{'present': false}
+fold3_room21_mix002.wav,70.0,80.0,10,2,Clapping,0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,80.0,90.0,10,0,"Female speech, woman speaking",0,0,1,{'present': false}
+fold3_room21_mix002.wav,80.0,90.0,10,1,"Male speech, man speaking",1,1,1,"{""present"": true}"
+fold3_room21_mix002.wav,80.0,90.0,10,2,Clapping,0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,90.0,100.0,10,0,"Female speech, woman speaking",0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,90.0,100.0,10,1,"Male speech, man speaking",1,1,1,"{""present"": true}"
+fold3_room21_mix002.wav,90.0,100.0,10,2,Clapping,0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,100.0,110.0,10,0,"Female speech, woman speaking",0,0,1,{'present': false}
+fold3_room21_mix002.wav,100.0,110.0,10,1,"Male speech, man speaking",1,1,1,"{""present"": true}"
+fold3_room21_mix002.wav,100.0,110.0,10,2,Clapping,0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,110.0,120.0,10,0,"Female speech, woman speaking",0,0,1,{'present': false}
+fold3_room21_mix002.wav,110.0,120.0,10,1,"Male speech, man speaking",1,0,0,"{""present"": false}"
+fold3_room21_mix002.wav,110.0,120.0,10,2,Clapping,0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,120.0,130.0,10,0,"Female speech, woman speaking",0,0,1,{'present': false}
+fold3_room21_mix002.wav,120.0,130.0,10,1,"Male speech, man speaking",1,1,1,"{""present"": true}"
+fold3_room21_mix002.wav,120.0,130.0,10,2,Clapping,0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,130.0,140.0,10,0,"Female speech, woman speaking",0,0,1,{'present': false}
+fold3_room21_mix002.wav,130.0,140.0,10,1,"Male speech, man speaking",1,1,1,"{""present"": true}"
+fold3_room21_mix002.wav,130.0,140.0,10,2,Clapping,0,0,1,"{""present"": false}"
+fold3_room21_mix002.wav,130.0,140.0,10,4,Laughter,1,1,1,"{""present"": true}"

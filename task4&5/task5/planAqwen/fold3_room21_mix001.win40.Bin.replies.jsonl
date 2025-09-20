@@ -1,0 +1,7 @@
+{"file": "fold3_room21_mix001.wav", "win_start": 0.0, "win_end": 40.0, "class": 0, "reply": "{'present': false}"}
+{"file": "fold3_room21_mix001.wav", "win_start": 0.0, "win_end": 40.0, "class": 1, "reply": "{\"present\": true}"}
+{"file": "fold3_room21_mix001.wav", "win_start": 0.0, "win_end": 40.0, "class": 2, "reply": "{'present': true}"}
+{"file": "fold3_room21_mix001.wav", "win_start": 0.0, "win_end": 40.0, "class": 4, "reply": "{'present': false}"}
+{"file": "fold3_room21_mix001.wav", "win_start": 40.0, "win_end": 80.0, "class": 0, "reply": "{'present': false}"}
+{"file": "fold3_room21_mix001.wav", "win_start": 40.0, "win_end": 80.0, "class": 1, "reply": "{'present': true}"}
+{"file": "fold3_room21_mix001.wav", "win_start": 40.0, "win_end": 80.0, "class": 2, "reply": "{'present': false}"}

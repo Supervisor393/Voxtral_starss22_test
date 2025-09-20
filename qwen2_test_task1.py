@@ -146,49 +146,44 @@ def build_prompt(present_classes: List[int], win_len: float) -> str:
     )
     return prompt
 
-def call_model_on_window(audio_arr, sr, present_classes: List[int], win_len: float) -> str:
+def call_model_A(audio_arr, sr, target_class: int, win_len: float) -> str:
     """
-    用 Qwen2-Audio-7B-Instruct 对当前窗口推理：
-    - 提示词包含 ID->含义
-    - 输入是“窗口内的 numpy 音频数组 + 文本指令”
-    - 返回原始字符串（供 parse_class_start_list 解析）
+    调用 Qwen 模型进行推理并获取开始时间的预测。
     """
-    prompt = build_prompt(present_classes, win_len)
+    # 生成提示词
+    text = build_prompt_A(target_class, win_len)
 
-    # Qwen 要求采样率与处理器一致（通常 16k）
+    # Qwen 要求的采样率为 16k
     if sr != _QWEN_TARGET_SR:
         audio_arr = librosa.resample(audio_arr, orig_sr=sr, target_sr=_QWEN_TARGET_SR)
 
-    # 按 ChatML 构造带 audio+text 的会话
+    # 按照 ChatML 构造会话输入
     conversation = [
         {"role": "user", "content": [
             {"type": "audio", "audio_url": None},  # 本地数组，不用 URL
-            {"type": "text", "text": prompt},
+            {"type": "text", "text": text},
         ]},
     ]
-    text = _qwen_processor.apply_chat_template(conversation, add_generation_prompt=True, tokenize=False)
+    
+    # 构建输入文本
+    inputs = processor.apply_chat_template(conversation, add_generation_prompt=True, tokenize=False)
 
-    # 打包输入并移动到模型设备
-    inputs = _qwen_processor(text=text, audio=audio_arr, return_tensors="pt", padding=True)
-    inputs = {k: v.to(_qwen_model.device) if hasattr(v, "to") else v for k, v in inputs.items()}
+    # 将音频和文本输入一起传递给模型
+    inputs = processor(text=inputs, audio=audio_arr, return_tensors="pt", padding=True)
 
-    # 生成
-    with torch.no_grad():
-        gen_ids = _qwen_model.generate(
-            **inputs,
-            do_sample=QWEN_DO_SAMPLE,            # 更严格 JSON 可改为 False
-            temperature=TEMPERATURE,
-            top_p=TOP_P,
-            max_new_tokens=QWEN_MAX_NEW_TOKENS,
-        )
-    # 只保留新生成部分
-    gen_ids = gen_ids[:, inputs["input_ids"].size(1):]
+    # 将输入数据移动到模型所在的设备
+    inputs = {key: value.to(model.device) for key, value in inputs.items()}
 
-    # 解码为字符串
-    response = _qwen_processor.batch_decode(
-        gen_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False
-    )[0]
-    return response
+    # 调用 Qwen 模型进行生成
+    generate_ids = model.generate(**inputs, max_length=256)
+
+    # 只保留新生成的部分（去除输入部分）
+    input_ids_length = inputs['input_ids'].size(1)  # 获取输入的长度
+    generate_ids = generate_ids[:, input_ids_length:]  # 去除输入部分
+
+    # 解析并返回模型响应
+    return processor.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)[0]
+
 
 # ---------------- windowing and GT computation ----------------
 
